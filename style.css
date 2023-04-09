@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: digital-7-mono;
+    src: url(digital-7-mono.ttf);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+}
+
+div.body {
+    width: 350px;
+    height: 500px;
+    border: 3px solid #333333;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #393333;
+}
+    
+
+div.screen {
+    width: 325px;
+    height: 100px;
+    margin:10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #4a4a4a;
+}
+
+div.display {
+    width: 315px;
+    height: 90px;
+    background-color: #456966;
+    color: black;
+    font-family: digital-7-mono;
+}
+
+.first-line {
+    height: 30px;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: end;
+    padding-right: 5px;
+}
+.second-line {
+    height: 60px;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: end;
+    padding-right: 5px;
+}
+
+div.keypad {
+    width: 325px;
+    height: 365px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8px;
+    background-color: #4a4a4a;
+}
+
+button {
+    width: 65px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    background-color: lightgray;
+}
+
+button:hover {filter: brightness(80%);}
+
+button:active {
+    filter: brightness(80%);
+  box-shadow: 0 2px #666;
+  transform: translateY(3px);
+}
+
+#backspace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.red {
+    background-color: lightcoral;
+}
+
+.operator {
+    background-color: #456966;
+}
+
+
+/* footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+  }
+  
+  .fa-github {
+    color: #222222;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+  }
