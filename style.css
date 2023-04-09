@@ -29,7 +29,6 @@ div.body {
     background-color: #393333;
 }
     
-
 div.screen {
     width: 325px;
     height: 100px;
@@ -84,6 +83,7 @@ button {
     font-weight: 600;
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 button:hover {filter: brightness(80%);}
@@ -109,8 +109,6 @@ button:active {
     background-color: #456966;
 }
 
-
-/* footer */
 .footer {
     position: absolute;
     bottom: 0;
@@ -127,9 +125,9 @@ button:active {
   .fa-github {
     color: #222222;
     font-size: 24px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out;
   }
   
   .fa-github:hover {
-    transform: rotate(360deg) scale(1.2);
+    transform: rotate(360deg) scale(1.3);
   }
