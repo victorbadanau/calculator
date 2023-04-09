@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/backspace.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="body">
+        <div class="screen">
+            <div class="display">
+                <div class="first-line">15+5-4*8/7=</div>
+                <div class="second-line">20-2</div>
+            </div>
+        </div>
+        <div class="keypad">
+            <button id="clear" class="red">AC</button>
+            <button id="plus-minus" class="operator">&#x00B1;</button>
+            <button id="modulus" class="operator">&#x0025;</button>
+            <button id="divide" class="operator">&#x00F7;</button>
+            <button id="seven">7</button>
+            <button id="eight">8</button>
+            <button id="nine">9</button>
+            <button id="multiply" class="operator">&#x00D7;</button>
+            <button id="four">4</button>
+            <button id="five">5</button>
+            <button id="six">6</button>
+            <button id="subtract" class="operator">&#x2212;</button>
+            <button id="one">1</button>
+            <button id="two">2</button>
+            <button id="three">3</button>
+            <button id="add" class="operator">&#x002B;</button>
+            <button id="floating-point" class="operator">&#x2022;</button>
+            <button id="zero">0</button>
+            <button id="backspace" class="red">
+                <i class="gg-backspace"></i>
+            </button>
+            <button id="equals" class="operator">&#x003D;</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright ©
+            <script>document.write(new Date().getFullYear())</script>
+            victorbadanau</p>
+        <a href="https://github.com/victorbadanau" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+</body>
+</html>
