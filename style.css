@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgoldenrodyellow;
+    background-color: linen;
 }
 
 div.body {
@@ -48,14 +48,14 @@ div.display {
     font-family: digital-7-mono;
 }
 
-.first-line {
+.previous {
     height: 30px;
     font-size: 30px;
     line-height: 30px;
     text-align: end;
     padding-right: 5px;
 }
-.second-line {
+.current {
     height: 60px;
     font-size: 60px;
     line-height: 60px;
@@ -105,7 +105,7 @@ button:active {
     background-color: lightcoral;
 }
 
-.operator {
+.operator, #plus-minus, #decimal, #equals {
     background-color: #456966;
 }
 

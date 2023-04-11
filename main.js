@@ -1,23 +1,53 @@
-let firstNumber;
-let secondNumber;
-let operator;
+let num1 = "";
+let num2 = "";
+let operator = "";
 
-function modulus(a, b) {
-    return a % b;
+let clear = document.querySelector("#clear");
+let plusMinus = document.querySelector("#plus-minus");
+let decimal = document.querySelector("#decimal");
+let backspace = document.querySelector("#backspace");
+let equal = document.querySelector("#equal");
+
+let numbers = document.querySelectorAll(".number");
+let operators = document.querySelectorAll(".operator");
+
+let previousDisplay = document.querySelector(".previous");
+let currentDisplay = document.querySelector(".current");
+
+function allClear() {
+    clear.addEventListener("pointerdown", () => {
+        currentDisplay.textContent = 0;
+        previousDisplay.textContent = "";
+    });
 }
 
-function divide(a, b) {
-    return a / b;
+numbers.forEach(number => getNumberValue(number));
+
+function getNumberValue(number) {
+    number.addEventListener("pointerdown", e => {
+        num1 += e.target.textContent;
+        currentDisplay.innerText = num1.substring(0, 11);
+})}
+
+function modulus(num1, num2) {
+    return num1 % num2;
 }
 
-function multiply(a, b) {
-    return a * b;
+function divide(num1, num2) {
+    return Math.round(((num1 / num2)+Number.EPSILON) * 1000) / 1000;
 }
 
-function subtract(a, b) {
-    return a - b;
+function multiply(num1, num2) {
+    return num1 * num2;
 }
 
-function add(a, b) {
-    return a + b;
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+
+function add(num1, num2) {
+    return num1 + num2;
+}
+
+function operate() {
 }
