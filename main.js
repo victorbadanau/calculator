@@ -14,19 +14,30 @@ let operators = document.querySelectorAll(".operator");
 let previousDisplay = document.querySelector(".previous");
 let currentDisplay = document.querySelector(".current");
 
-function allClear() {
-    clear.addEventListener("pointerdown", () => {
-        currentDisplay.textContent = 0;
-        previousDisplay.textContent = "";
-    });
-}
+let defaultScreen = currentDisplay.textContent = "0";
+
+clear.addEventListener("pointerdown", () => {
+    num1 = "";
+    num2 = ""
+    currentDisplay.textContent = defaultScreen;
+    previousDisplay.textContent = "";
+});
+
+backspace.addEventListener("pointerdown", () => {
+    currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
+    num1 = currentDisplay.textContent;
+    num2 = currentDisplay.textContent;
+    if (currentDisplay.textContent.length == 0) {
+        currentDisplay.textContent = defaultScreen;
+    }
+});
 
 numbers.forEach(number => getNumberValue(number));
 
-function getNumberValue(number) {
-    number.addEventListener("pointerdown", e => {
+function getNumberValue(key) {
+    key.addEventListener("pointerdown", e => {
         num1 += e.target.textContent;
-        currentDisplay.innerText = num1.substring(0, 11);
+        currentDisplay.textContent = num1.substring(0, 11);
 })}
 
 function modulus(num1, num2) {
