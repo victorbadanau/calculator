@@ -1,10 +1,8 @@
-let num1 = "";
-let num2 = "";
+let firstNumber = "";
+let secondNumber = "";
 let operator = "";
 
 let clear = document.querySelector("#clear");
-let plusMinus = document.querySelector("#plus-minus");
-let decimal = document.querySelector("#decimal");
 let backspace = document.querySelector("#backspace");
 let equal = document.querySelector("#equal");
 
@@ -14,51 +12,76 @@ let operators = document.querySelectorAll(".operator");
 let previousDisplay = document.querySelector(".previous");
 let currentDisplay = document.querySelector(".current");
 
-let defaultScreen = currentDisplay.textContent = "0";
+const defaultScreen = currentDisplay.textContent = "0";
+let decimal = document.getElementById("decimal");
 
 clear.addEventListener("pointerdown", () => {
-    num1 = "";
-    num2 = ""
+    firstNumber = "";
+    secondNumber = ""
     currentDisplay.textContent = defaultScreen;
     previousDisplay.textContent = "";
+    decimal.value = ".";
 });
 
 backspace.addEventListener("pointerdown", () => {
     currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
-    num1 = currentDisplay.textContent;
-    num2 = currentDisplay.textContent;
+    firstNumber = currentDisplay.textContent;
+    secondNumber = currentDisplay.textContent;
     if (currentDisplay.textContent.length == 0) {
         currentDisplay.textContent = defaultScreen;
     }
 });
 
-numbers.forEach(number => getNumberValue(number));
+numbers.forEach(number => updateDisplay(number));
 
-function getNumberValue(key) {
-    key.addEventListener("pointerdown", e => {
-        num1 += e.target.textContent;
-        currentDisplay.textContent = num1.substring(0, 11);
-})}
-
-function modulus(num1, num2) {
-    return num1 % num2;
+function updateDisplay(arg) {
+    if (arg) {
+        arg.addEventListener("pointerdown", e => {
+            if (firstNumber === "" && e.target.id === "decimal") {
+                firstNumber = "0";
+                currentDisplay.textContent = firstNumber;
+            }
+            else if (firstNumber === "-" && e.target.id === "decimal") {
+                e.target.value = "";
+            }
+            else if (firstNumber.includes(".") && e.target.id === "decimal") {
+                e.target.value = "";
+            }
+            else if (e.target.id === "decimal" && !firstNumber.includes(".")) {
+                e.target.value = ".";
+            }
+            else if (e.target.id === "plus-minus" && !firstNumber.includes("-")) {
+                firstNumber = "-" + firstNumber;
+            }
+            else if (firstNumber.includes("-") && e.target.id === "plus-minus") {
+                firstNumber = firstNumber.slice(1);
+            }
+            else if (firstNumber === "-0" || firstNumber === "0") {
+                firstNumber += ".";
+            }
+            
+            firstNumber += e.target.value;
+            currentDisplay.textContent = firstNumber.substring(0, 11);
+        });
+    }
 }
 
-function divide(num1, num2) {
-    return Math.round(((num1 / num2)+Number.EPSILON) * 1000) / 1000;
+function modulus(a, b) {
+    return a % b;
 }
 
-function multiply(num1, num2) {
-    return num1 * num2;
+function divide(a, b) {
+    return Math.round(((a / b)+Number.EPSILON) * 100) / 100;
 }
 
-function subtract(num1, num2) {
-    return num1 - num2;
+function multiply(a, b) {
+    return Math.round(((a * b)+Number.EPSILON) * 100) / 100;
 }
 
-function add(num1, num2) {
-    return num1 + num2;
+function subtract(a, b) {
+    return a - b;
 }
 
-function operate() {
+function add(a, b) {
+    return a + b;
 }
