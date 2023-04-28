@@ -5,8 +5,8 @@
 }
 
 @font-face {
-    font-family: digital-7-mono;
-    src: url(digital-7-mono.ttf);
+    font-family: digital-7;
+    src: url(digital-7.ttf);
 }
 
 body {
@@ -45,7 +45,7 @@ div.display {
     height: 90px;
     background-color: #456966;
     color: black;
-    font-family: digital-7-mono;
+    font-family: digital-7;
 }
 
 .previous {
@@ -56,11 +56,15 @@ div.display {
     padding-right: 5px;
 }
 .current {
+    display: flex;
+    justify-content: end;
+    white-space: nowrap;
+    overflow: hidden;
     height: 60px;
     font-size: 60px;
     line-height: 60px;
-    text-align: end;
     padding-right: 5px;
+    margin-left: 5px;
 }
 
 div.keypad {
@@ -105,7 +109,7 @@ button:active {
     background-color: lightcoral;
 }
 
-.operator, #plus-minus, #decimal, #equals {
+.operator, #plus-minus, #decimal, #equal {
     background-color: #456966;
 }
 
