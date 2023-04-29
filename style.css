@@ -49,11 +49,16 @@ div.display {
 }
 
 .previous {
+    display: flex;
+    justify-content: end;
+    white-space: nowrap;
+    overflow: hidden;
     height: 30px;
     font-size: 30px;
     line-height: 30px;
-    text-align: end;
+    /* text-align: end; */
     padding-right: 5px;
+    margin-left: 5px;
 }
 .current {
     display: flex;
