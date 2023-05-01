@@ -35,6 +35,7 @@ function subtract(a, b) {
 function add(a, b) {
     return Math.round(((a + b)+Number.EPSILON) * 100) / 100;
 }
+
 function clearDisplay() {
     firstNumber = "";
     secondNumber = ""
@@ -44,9 +45,7 @@ function clearDisplay() {
     decimal.value = ".";
 }
 
-clear.addEventListener("pointerdown", () => clearDisplay());
-
-backspace.addEventListener("pointerdown", () => {
+function deleteLastDigit() {
     if (previousDisplay.textContent.includes("=")) {
         return
     }
@@ -55,7 +54,10 @@ backspace.addEventListener("pointerdown", () => {
     }
     currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
     initialDisplay = currentDisplay.textContent;
-});
+}
+
+clear.addEventListener("pointerdown", () => clearDisplay());
+backspace.addEventListener("pointerdown", () => deleteLastDigit());
 
 digits.forEach(digit => updateDisplay(digit));
 
@@ -110,7 +112,8 @@ function getOperator(arg) {
     arg.addEventListener("pointerdown", e => {
         if (currentDisplay.textContent == "-" && !previousDisplay.textContent || 
             currentDisplay.textContent.includes("-") && currentDisplay.textContent == 0 && !previousDisplay.textContent || 
-            currentDisplay.textContent.at(-1) == "." && !previousDisplay.textContent) {
+            currentDisplay.textContent.at(-1) == "." && !previousDisplay.textContent ||
+            currentDisplay.textContent == "") {
             return
         }
         else if (previousDisplay.textContent.includes("=")) {
@@ -149,7 +152,7 @@ function operate() {
     }
 }
 
-equal.addEventListener("pointerdown", () => {
+function operateOnEqual() {
     operator = previousDisplay.textContent.at(-1);
     firstNumber = Number(previousDisplay.textContent.slice(0, -1));
     secondNumber = Number(currentDisplay.textContent);
@@ -168,4 +171,100 @@ equal.addEventListener("pointerdown", () => {
         previousDisplay.textContent += secondNumber + "=";
         operate();
    }
-});
+}
+
+equal.addEventListener("pointerdown", () => operateOnEqual());
+
+// Keyboard support:
+
+document.addEventListener("keydown", e => {
+    e.preventDefault();
+    if (e.key === "Backspace") {
+        deleteLastDigit();
+    }
+    else if (e.key === "Delete") {
+        clearDisplay();
+    }
+    else if (e.key === "=" || e.key == "Enter") {
+        operateOnEqual();
+    }
+    else if (e.key == "0" || e.key == "1" || e.key == "2" || 
+                e.key == "3" || e.key == "4" || e.key == "5" ||
+                e.key == "6" || e.key == "7" || e.key == "8" || 
+                e.key == "9" || e.key == ".") {
+        if (previousDisplay.textContent.includes("=") && e.key === ".") {
+            clearDisplay();
+            initialDisplay = "0";
+            currentDisplay.textContent = initialDisplay;
+        }
+        else if (previousDisplay.textContent.includes("=") && e.key === "-") {
+            clearDisplay();
+            initialDisplay = "-" + initialDisplay;
+            currentDisplay.textContent = initialDisplay;
+        }
+        else if (previousDisplay.textContent.includes("=") && e.key == "0" ||
+            previousDisplay.textContent.includes("=") && e.key == "1" ||
+            previousDisplay.textContent.includes("=") && e.key == "2" ||
+            previousDisplay.textContent.includes("=") && e.key == "3" ||
+            previousDisplay.textContent.includes("=") && e.key == "4" ||
+            previousDisplay.textContent.includes("=") && e.key == "5" ||
+            previousDisplay.textContent.includes("=") && e.key == "6" ||
+            previousDisplay.textContent.includes("=") && e.key == "7" ||
+            previousDisplay.textContent.includes("=") && e.key == "8" ||
+            previousDisplay.textContent.includes("=") && e.key == "9" ||
+            previousDisplay.textContent.includes("=") && e.key == ".") {
+            clearDisplay();
+        }
+        else if (initialDisplay === "" && e.key === ".") {
+            initialDisplay = "0";
+            currentDisplay.textContent = initialDisplay;
+        }
+        else if (initialDisplay === "-" && e.key === ".") {
+            return
+        }
+        else if (initialDisplay.includes(".") && e.key === ".") {
+            return
+        }
+        else if (initialDisplay === "-0" || initialDisplay === "0") {
+            initialDisplay += ".";
+        }
+        initialDisplay += e.key;
+        currentDisplay.textContent = initialDisplay;
+    }
+    else if (e.key == "/" || e.key == "*" || 
+                e.key == "-" || e.key == "+" || e.key == "%") {
+        function returnOperator() {
+            if (e.key == "/") {
+                return operator = "÷";
+            }
+            else if (e.key == "*") {
+                return operator = "×";
+            }
+            else {
+                operator = e.key;
+            }
+            return operator;
+        }
+        operator = returnOperator();
+        if (currentDisplay.textContent == "-" && !previousDisplay.textContent || 
+            currentDisplay.textContent.includes("-") && currentDisplay.textContent == 0 && !previousDisplay.textContent || 
+            currentDisplay.textContent.at(-1) == "." && !previousDisplay.textContent ||
+            currentDisplay.textContent == "") {
+            return
+        }
+        else if (previousDisplay.textContent.includes("=")) {
+            previousDisplay.textContent = "";
+            previousDisplay.textContent = currentDisplay.textContent + operator;
+            initialDisplay = "";
+            currentDisplay.textContent = defaultDisplay;
+        }
+        else if (isNaN(previousDisplay.textContent)) {
+            previousDisplay.textContent = previousDisplay.textContent.slice(0, -1) + operator;
+        }
+        else {
+            previousDisplay.textContent = currentDisplay.textContent + operator;
+            initialDisplay = "";
+            currentDisplay.textContent = defaultDisplay;
+        }
+    }
+}, false);
