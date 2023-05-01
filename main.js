@@ -196,6 +196,9 @@ document.addEventListener("keydown", e => {
             initialDisplay.includes(".") && e.key === ".") {
             return
         }
+        else if (e.key != "." && initialDisplay === "0") {
+            initialDisplay += ".";
+        }
         else if (previousDisplay.textContent.includes("=") && e.key === ".") {
             clearDisplay();
             initialDisplay = "0";

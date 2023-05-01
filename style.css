@@ -93,6 +93,7 @@ button {
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     background-color: lightgray;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {filter: brightness(80%);}
