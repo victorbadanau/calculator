@@ -192,7 +192,11 @@ document.addEventListener("keydown", e => {
                 e.key == "3" || e.key == "4" || e.key == "5" ||
                 e.key == "6" || e.key == "7" || e.key == "8" || 
                 e.key == "9" || e.key == ".") {
-        if (previousDisplay.textContent.includes("=") && e.key === ".") {
+        if (initialDisplay === "-" && e.key === "." ||
+            initialDisplay.includes(".") && e.key === ".") {
+            return
+        }
+        else if (previousDisplay.textContent.includes("=") && e.key === ".") {
             clearDisplay();
             initialDisplay = "0";
             currentDisplay.textContent = initialDisplay;
@@ -218,15 +222,6 @@ document.addEventListener("keydown", e => {
         else if (initialDisplay === "" && e.key === ".") {
             initialDisplay = "0";
             currentDisplay.textContent = initialDisplay;
-        }
-        else if (initialDisplay === "-" && e.key === ".") {
-            return
-        }
-        else if (initialDisplay.includes(".") && e.key === ".") {
-            return
-        }
-        else if (initialDisplay === "-0" || initialDisplay === "0") {
-            initialDisplay += ".";
         }
         initialDisplay += e.key;
         currentDisplay.textContent = initialDisplay;
