@@ -113,7 +113,7 @@ function getOperator(arg) {
         if (currentDisplay.textContent == "-" && !previousDisplay.textContent || 
             currentDisplay.textContent.includes("-") && currentDisplay.textContent == 0 && !previousDisplay.textContent || 
             currentDisplay.textContent.at(-1) == "." && !previousDisplay.textContent ||
-            currentDisplay.textContent == "") {
+            currentDisplay.textContent == "" || currentDisplay.textContent == "nice try") {
             return
         }
         else if (previousDisplay.textContent.includes("=")) {
