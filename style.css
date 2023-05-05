@@ -96,7 +96,11 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
-button:hover {filter: brightness(80%);}
+@media(hover: hover) {
+    button:hover {
+        filter: brightness(80%);
+    }
+}
 
 button:active {
     filter: brightness(80%);
@@ -136,6 +140,7 @@ button:active {
     color: #222222;
     font-size: 24px;
     transition: transform 0.4s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .fa-github:hover {
