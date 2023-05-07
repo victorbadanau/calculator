@@ -92,11 +92,10 @@ button {
     font-weight: 600;
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     background-color: lightgray;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    cursor: default;
 }
 
-@media(hover: hover) {
+@media (hover: hover) and (pointer: fine) {
     button:hover {
         filter: brightness(80%);
     }
@@ -104,8 +103,8 @@ button {
 
 button:active {
     filter: brightness(80%);
-  box-shadow: 0 2px #666;
-  transform: translateY(3px);
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
 }
 
 #backspace {
@@ -140,7 +139,7 @@ button:active {
     color: #222222;
     font-size: 24px;
     transition: transform 0.4s ease-in-out;
-    -webkit-tap-highlight-color: transparent;
+    cursor: default;
   }
   
   .fa-github:hover {
